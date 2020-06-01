@@ -1,0 +1,8 @@
+
+*.DS_Store
+
+.wercker
+.next
+
+node_modules
+yarn-error.log

@@ -1,0 +1,46 @@
+
+.page-row__journal-single-content {
+  .page-row__content-inner-content {
+    font-size: 0.7em;
+    text-align: left;
+    line-height: 1.6em;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      line-height: 1.8em;
+    }
+
+    h2 {
+      text-transform: none;
+      margin-top: 2em;
+      font-weight: 700;
+    }
+
+    h3 {
+      text-transform: none;
+      margin-top: 3em;
+      font-weight: 700;
+    }
+  }
+
+  .block__image {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    margin-left: -2.2em;
+    margin-right: -2.2em;
+
+    @media (min-width: 600px) {
+      margin-left: -12.5%;
+      margin-right: -12.5%;
+    }
+  }
+}
+
+.journal-share {
+  display: flex;
+  justify-content: center;
+}

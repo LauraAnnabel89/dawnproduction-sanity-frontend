@@ -1,0 +1,13 @@
+.expandable {
+  transform: translateY(2em);
+
+  transition: {
+    duration: 500ms;
+    property: height, transform;
+    timing-function: $transition-bezier;
+  }
+
+  &.expandable--expanded {
+    transform: translateY(0);
+  }
+}

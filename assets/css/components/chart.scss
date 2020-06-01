@@ -1,0 +1,81 @@
+.chart__list,
+.chart__list-items {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.chart__list {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-around;
+  justify-content: center;
+  font-size: 0.5em;
+  line-height: 1.5em;
+
+  h3 {
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+}
+
+.chart__list-item {
+  flex-shrink: 1;
+  width: 15em;
+  height: 15em;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 2em 1.25em;
+  border-radius: 50%;
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+.chart {
+  .parallax-inner {
+    .chart__list-item {
+      opacity: 0;
+      transition: {
+        property: opacity;
+        duration: 200ms;
+      }
+    }
+
+    &.parallax--not-above {
+      .chart__list-item {
+        transition: {
+          duration: 0s;
+          delay: 0s !important;
+        }
+      }
+    }
+
+    &.parallax--above {
+      .chart__list-item {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.page-row__theme-grey-red {
+  .chart__list-item {
+    border-color: $inverseHighlight;
+  }
+}
+
+.page-row__theme-red {
+  .chart__list-item {
+    border-color: $introPageBackground;
+  }
+}
+
+.page-row__theme-yellow-red {
+  .chart__list-item {
+    border-color: $inverseHighlight;
+  }
+}

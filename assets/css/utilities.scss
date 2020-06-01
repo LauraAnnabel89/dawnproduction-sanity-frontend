@@ -1,0 +1,123 @@
+$text-cases: (lowercase, uppercase, capitalize);
+
+@each $case in $text-cases {
+  .text-#{$case} {
+    text-transform: $case !important;
+  }
+}
+
+$aligments: (left, right, center, justify);
+
+@each $side in $aligments {
+  .text-#{$side} {
+    text-align: $side !important;
+  }
+}
+
+@for $scale from 1 through 8 {
+  $weight: $scale * 100;
+
+  .font-#{$weight} {
+    font-weight: $weight !important;
+  }
+}
+
+$weights: (thin, normal, bold, bolder);
+
+@each $weight in $weights {
+  .font-#{$weight} {
+    font-weight: $weight !important;
+  }
+}
+
+$layers: (bottom: 1, top: 10);
+
+@each $layer, $value in $layers {
+  .layer-#{$layer} {
+    z-index: $value !important;
+  }
+}
+
+
+
+@each $layer, $value in $layers {
+  .layer-#{$layer} {
+    z-index: $value !important;
+  }
+}
+
+
+@for $scale from 1 through 20 {
+  $width: $scale * 5;
+
+  .w-#{$width} {
+    width: $width * 1%;
+
+    &-md {
+      @media (min-width: 62em) {
+        width: $width * 1% !important;
+      }
+    }
+  }
+}
+
+$nudges: (left, right);
+
+@each $nudge in $nudges {
+
+  .nudge-#{$nudge} {
+    margin: auto;
+
+    @media (min-width: 62em) {
+      margin-#{$nudge}: 50%;
+    }
+  }
+}
+
+$visibilities: (hidden, unset, visible);
+
+@each $vis in $visibilities {
+  .vis-#{$vis} {
+    visibility: $vis;
+  }
+}
+
+$positions: (static, relative, initial, absolute, fixed);
+
+@each $position in $positions {
+  .pos-#{$position} {
+    position: $position;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.collapse-margins {
+  > * {
+    margin: 0;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.unclickable {
+  cursor: auto;
+  pointer-events: none;
+}
+
+.opacity-full {
+  opacity: 1;
+}
+
+.opacity-faded {
+  opacity: 0.2;
+}

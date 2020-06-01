@@ -1,0 +1,68 @@
+
+.contact-form {
+  font-size: 0.7em;
+  margin-bottom: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 28em;
+
+  @media (min-width: 600px) {
+    margin-bottom: 8em;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    font-size: 0.8em;
+  }
+
+  .expandable {
+    overflow: hidden;
+
+    .expandable__content {
+      opacity: 0;
+      transition: {
+        duration: 500ms;
+        property: opacity;
+        timing-function: $transition-bezier;
+      }
+
+    }
+
+    &.expandable--expanded {
+      .expandable__content {
+        opacity: 1;
+      }
+    }
+
+  }
+
+}
+
+.contact-form__form-field {
+
+  &.contact-form__form-field--error {
+    input,
+    textarea {
+      border-bottom-color: $inverseHighlight;
+      // color: $inverseHighlight;
+
+      // &::placeholder {
+      //   color: $inverseHighlight;
+      // }
+    }
+  }
+
+}
+
+.contact-form__form-field-validation {
+  color: $inverseHighlight;
+}
+
+.contact-form__message {
+  margin-top: 2em;
+}

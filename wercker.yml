@@ -1,0 +1,35 @@
+box: node:8.15.0
+build:
+  steps:
+    - script:
+        name: install node dependencies
+        code: yarn install --no-optional --silent
+    - script:
+        name: build
+        code: yarn build
+deploy:
+  steps:
+    - add-to-known_hosts:
+        hostname: $DOKKU_HOST
+    - add-ssh-key:
+        keyname: DOKKU_KEY
+    - script:
+        name: Initialize new repository
+        code: |
+          rm -rf .git
+          rm .gitignore
+          rm Build-Local.Dockerfile
+          mv Build-Server.Dockerfile Dockerfile
+          git init
+          git config --global user.name "wercker"
+          git config --global user.email "pleasemailus@wercker.com"
+          git remote add dokku dokku@$DOKKU_HOST:$DOKKU_APP
+    - script:
+        name: Add everything to the repository
+        code: |
+          git add .
+          git commit --quiet -m "Result of deploy $WERCKER_GIT_COMMIT"
+    - script:
+        name: Push to dokku
+        code: |
+          git push -f dokku master

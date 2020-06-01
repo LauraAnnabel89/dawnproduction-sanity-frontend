@@ -1,0 +1,64 @@
+.journal-grid__journal {
+  h3, h4, h5 {
+    transition: {
+      duration: 0.15s;
+      property: background-color;
+    }
+  }
+
+  &:hover {
+    .journal-grid__journal-meta {
+      h3, h4, h5 {
+        background-color: $highlight;
+      }
+    }
+  }
+}
+
+.journal-grid__journal-meta {
+  display: block;
+  line-height: 1em;
+  margin-top: 0.5em;
+  min-height: 3em;
+
+  h3,
+  h4,
+  h5 {
+    font-size: 0.75em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    display: inline;
+  }
+
+  h4,
+  h5 {
+    display: inline;
+    text-transform: none;
+  }
+
+  h3 {
+    font-weight: 700;
+    margin-bottom: 0;
+
+    &:after {
+      white-space: pre;
+      content: '\A';
+    }
+  }
+
+  h4 {
+    font-weight: 300;
+    clear: left;
+
+    &:after {
+      content: '/';
+      font-weight: 300;
+      padding: 0 0.4em;
+    }
+  }
+
+  h5 {
+    font-weight: 700;
+  }
+
+}

@@ -1,0 +1,101 @@
+$arrow-thickness: 4px;
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+
+  .icon__el-1,
+  .icon__el-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.icon__cross {
+
+  .icon__el-1 {
+    transform: translate(50%, 0);
+
+    &:before {
+      width: $arrow-thickness;
+      height: 100%;
+      background-color: $blue;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .icon__el-2 {
+    transform: translate(0, 50%);
+
+    &:before {
+      height: $arrow-thickness;
+      width: 100%;
+      background-color: $blue;
+      transform: translate(0, -50%);
+    }
+  }
+
+}
+
+.icon__arrow {
+  width: 38px;
+  height: 38px;
+
+  .icon__el-1 {
+    transform: translate(-$arrow-thickness, calc(50% - #{$arrow-thickness / 2}));
+
+    &:before {
+      height: $arrow-thickness;
+      width: 100%;
+      background-color: $blue;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .icon__el-2 {
+    top: 50%;
+    height: $arrow-thickness;
+    transform: translate(0, -50%);
+
+    &:before {
+      width: 11px;
+      height: 11px;
+      right: 0;
+      left: auto;
+      transform-origin: top right;
+      transform: rotate(45deg);
+      border-top: $arrow-thickness solid $blue;
+      border-right: $arrow-thickness solid $blue;
+    }
+  }
+}
+
+@for $turns from 1 through 4 {
+  $degrees: $turns * 90;
+
+  .icon__arrow-#{$degrees}deg {
+    @extend .icon__arrow;
+
+    @if ($degrees = 270) {
+      transform: rotate($degrees * 1deg) translateX(6px);
+    } @else {
+      transform: rotate($degrees * 1deg);
+    }
+  }
+}
+

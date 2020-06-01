@@ -1,0 +1,10 @@
+const routes = require('next-routes')
+
+module.exports = routes()
+  .add('about')
+  .add('work-index', '/our-work', 'case-stories')
+  .add('journal-index', '/a-few-yarns', 'journal')
+  .add('terms-and-conditions')
+  .add('post', '/a-few-yarns/:slug', 'journal-single')
+  .add('work', '/our-work/:slug', 'work-single')
+  .add('page', '/:slug', '_page')

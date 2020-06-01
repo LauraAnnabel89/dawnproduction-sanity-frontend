@@ -1,0 +1,19 @@
+.lettering {
+  position: relative;
+
+  .word {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .letter {
+    display: inline-block;
+    opacity: 1;
+  }
+
+  &.lettering-paused {
+    .word {
+      overflow: visible !important;
+    }
+  }
+}

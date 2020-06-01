@@ -1,0 +1,24 @@
+.page__terms {
+  padding-top: 6em;
+  max-width: 50em;
+  margin: auto;
+
+  p {
+    font-size: 1rem;
+    line-height: 1.4;
+
+    a {
+      color: $blue;
+      text-decoration: underline;
+    }
+  }
+
+  // .page-row {
+  //   align-items: flex-start;
+  // }
+  //
+  // .page-row__content {
+  //   margin: 0;
+  //   max-width: 20em;
+  // }
+}

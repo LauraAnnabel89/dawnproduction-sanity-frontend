@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700,100i,300i,400i,500i,700i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,700');
+//fonts
+$baseFontSize: 24px;
+$desktopFontSize: 21px;
+$tabletFontSize: 18px;
+$mobileFontSize: 14px;
+
+$title: 2em;
+$subtitle: 1.5em;
+$small-subtitle: 1.25em;
+$title-small: 0.75em;
+$blurb: 1em;
+$main: 0.6em;
+$footer: 0.4em;
+
+$nav-page: 1em;
+$nav-page-lh: 1.35em;
+$nav-social: 0.75em;
+$nav-social-lh: 1.25em;
+
+$family: 'Montserrat', sans-serif;
+$copy-family: 'Roboto', sans-serif;
+$lighter: 100;
+$light: 300;
+$bold: 700;
+
+//colour scheme
+$copy: #000;
+$inverseCopy: #fff;
+$inverseHighlight: #ff1324;
+$introPageBackground: #f7ea00;
+$highlight: #fff200;
+$workAnchor: #0042ff;
+$blue: #0022ff;
+$lightBg: #f8fbfb;
+$arrow: #55bec4;
+
+// width
+$mobile: 420px;
+$mobile-landscape: 550px;
+$tablet: 992px;
+$desktop: 1024px;
+$content-width: 80%;
+$slant-angle: 3deg;
+
+$news-min: 250px;
+$news-max: 600px;
+
+$person-card-height: 400px;
+
+@mixin bg-image ($bg-col: black) {
+  position: absolute;
+  background-color: $bg-col;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+
+$max-width: 1660px;
+$gutter-width: 2rem;
+$outer-margin: 2rem;
+$flexboxgrid-max-width: $max-width;
+$mobile-flex-max: 61.99999em;
+$desktop-flex-min: 62em;
+
+$laptop-13inch: 1380px;
+$laptop-15inch: 1920px;
+
+$spacing-base: $gutter-width;
+
+$header-small-bp: 800px;
+$header-height: 6em;
+$header-height-small: 4.5em;
+$page-padding: 1.5em;
+$transition-bezier: cubic-bezier(0.75, 0, 0.25, 1);
+$transition-bezier-in: cubic-bezier(0.75, 0, 1, 1);
+$transition-bezier-out: cubic-bezier(0, 0, 0.25, 1);
+
+$bezier-ease-in: cubic-bezier(0.75, 0, 1, 1);
+$bezier-ease-out: cubic-bezier(0, 0, 0.25, 1);

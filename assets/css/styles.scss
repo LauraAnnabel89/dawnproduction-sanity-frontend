@@ -1,0 +1,355 @@
+@import './variables.scss';
+@import 'flexboxgrid-sass/flexboxgrid';
+
+@import './functions.scss';
+@import './mixins.scss';
+@import './base.scss';
+
+@import './typography.scss';
+@import './pages.scss';
+@import './components.scss';
+@import './utilities.scss';
+
+.st0{fill:#1D1D1B;}
+
+.cross {
+  width: 35px;
+  height: 35px;
+  transform: translateZ(0);
+  display: inline-block;
+  transition: transform 0.35s ease-in-out;
+
+  &:before,
+  &:after {
+    transform: none;
+  }
+
+  &:before {
+    top: 17px;
+  }
+
+  &:after {
+    left: 17px;
+  }
+}
+
+.project-grid__project-meta-name {
+  font-weight: 300;
+
+  &:before {
+    content: '/ '
+  }
+}
+
+
+@function skew-padding($angle) {
+  @return tan($angle / 2) * 100%;
+}
+
+.transition-cover--container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  overflow: hidden;
+  display: none;
+}
+
+$angle: 10deg;
+$slant-padding: skew-padding($angle);
+
+$angle-normal: 0deg;
+$slant-padding-normal: skew-padding($angle-normal);
+
+
+.transition-cover--inner {
+  // background-color: $introPageBackground;
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+  transition: {
+    property: top, margin, padding, height;
+    timing-function: cubic-bezier(0.75, 0, 0.25, 1);
+  }
+
+  padding: $slant-padding 0;
+
+  &:before {
+    background-color: $inverseCopy;
+    // background-color: $introPageBackground;
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: skewY($angle) translateZ(0);
+
+    transition: {
+      property: transform;
+      timing-function: cubic-bezier(0.75, 0, 0.25, 1);
+    }
+  }
+}
+
+#nprogress {
+  .bar {
+    background: $highlight !important;
+  }
+  .peg {
+    display: none !important;
+  }
+}
+
+.page-transition-enter {
+  .transition-cover--container {
+    display: block;
+  }
+  .transition-cover--inner {
+    height: 100%;
+    margin: -$slant-padding * 2 0;
+    top: 0%;
+    transition-duration: 0;
+
+    &:before {
+      transition-duration: 0;
+    }
+  }
+}
+
+.page-transition-enter-active {
+  .transition-cover--inner {
+    height: 0%;
+    margin: $slant-padding-normal * 2 0;
+    padding: $slant-padding-normal 0;
+    top: 0%;
+    transition-duration: 750ms;
+
+    &:before {
+      transform: skewY($angle-normal) translateZ(0);
+      transition-duration: 750ms;
+    }
+  }
+}
+
+.page-transition-exit {
+  .transition-cover--container {
+    display: block;
+  }
+  .transition-cover--inner {
+    top: 100%;
+    height: 0%;
+    margin: 0 0;
+    transition-duration: 0;
+
+    &:before {
+      transition-duration: 0;
+    }
+  }
+}
+
+.page-transition-exit-active {
+  .transition-cover--inner {
+    top: 0%;
+    height: 100%;
+    margin: -$slant-padding * 2 0;
+    transition-duration: 750ms;
+
+    &:before {
+      transition-duration: 750ms;
+    }
+  }
+}
+
+.page-transition__fade-enter {
+  opacity: 0;
+}
+
+.page-transition__fade-enter-active {
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 500ms;
+}
+
+.page-transition__fade-exit {
+  opacity: 1;
+}
+
+.page-transition__fade-exit-active {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 500ms;
+}
+
+.page-transition__slide-enter {
+  opacity: 0;
+  transform: translateX(5em);
+}
+
+.page-transition__slide-enter-active {
+  opacity: 1;
+  transform: translateX(0em);
+  transition-property: opacity, transform;
+  transition-duration: 500ms;
+}
+
+.page-transition__slide-exit {
+  opacity: 1;
+  transform: translateX(0em);
+}
+
+.page-transition__slide-exit-active {
+  opacity: 0;
+  transform: translateX(-5em);
+  transition-property: opacity, transform;
+  transition-duration: 500ms;
+}
+
+
+
+.page-transition__slide-backward-enter {
+  opacity: 0;
+  transform: translateX(-5em);
+}
+
+.page-transition__slide-backward-enter-active {
+  opacity: 1;
+  transform: translateX(0em);
+  transition-property: opacity, transform;
+  transition-duration: 500ms;
+}
+
+.page-transition__slide-backward-exit {
+  opacity: 1;
+  transform: translateX(0em);
+}
+
+.page-transition__slide-backward-exit-active {
+  opacity: 0;
+  transform: translateX(5em);
+  transition-property: opacity, transform;
+  transition-duration: 500ms;
+}
+
+
+
+
+.page-transition__slide-vertical-enter {
+  opacity: 0;
+  transform: translateY(5em);
+}
+
+.page-transition__slide-vertical-enter-active {
+  opacity: 1;
+  transform: translateY(0em);
+  transition-property: opacity, transform;
+  transition-duration: 500ms;
+}
+
+.page-transition__slide-vertical-exit {
+  opacity: 1;
+  transform: translateY(0em);
+}
+
+.page-transition__slide-vertical-exit-active {
+  opacity: 0;
+  transform: translateY(5em);
+  transition-property: opacity, transform;
+  transition-duration: 500ms;
+}
+
+
+.page-wrapper {
+  margin-top: $header-height-small;
+  margin-bottom: 2em;
+  padding-top: 2.5em;
+
+  @media (min-width: 600px) {
+    padding-top: 3.5em;
+  }
+
+  @media (min-width: $desktop) {
+    padding-top: 4.5em;
+  }
+
+  @media (min-width: $header-small-bp) {
+    margin-top: $header-height;
+  }
+
+  &__horizontal {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+
+    > .page-row {
+      flex: 0 0 auto;
+    }
+  }
+
+  // Enforce screen height on horizontal layout 
+  body.layout__horizontal & {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;  
+    padding-bottom: 0 !important;  
+  } 
+}
+
+.row-wrapper {
+  margin-top: $header-height-small;
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $page-padding;
+  box-sizing: border-box;
+
+  @media (min-height: $header-small-bp) {
+    margin-top: $header-height;
+  }
+
+  &.row-wrapper__size-full {
+    padding: 0;
+  }
+}
+
+.button {
+  box-sizing: border-box;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding: 1.2em 2em;
+  min-width: 10em;
+  text-align: center;
+  border: 1px solid $copy;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 1.6em;
+  transition: {
+    property: background-color, color;
+    duration: 0.3s;
+  }
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.button--filled {
+  background-color: $copy;
+  color: white;
+
+  &:hover {
+    background-color: transparent;
+    color: $copy;
+  }
+}

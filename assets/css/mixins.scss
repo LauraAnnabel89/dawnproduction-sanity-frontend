@@ -1,0 +1,5 @@
+@mixin disable-parallax {
+  .parallax-inner {
+    transform: none !important;
+  }
+}

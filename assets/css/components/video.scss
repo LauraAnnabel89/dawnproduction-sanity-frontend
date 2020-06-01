@@ -1,0 +1,193 @@
+.video__inner {
+  $video-overflow: 2px;
+
+  padding-top: 56.25%;
+  position: relative;
+  overflow: hidden;
+
+  > div,
+  iframe {
+    display: block;
+    position: absolute;
+    top: -$video-overflow;
+    left: -$video-overflow;
+    width: calc(100% + #{$video-overflow * 2}) !important;
+    height: calc(100% + #{$video-overflow * 2}) !important;
+  }
+
+  .vimeo-image {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .vimeo-loading,
+  .vimeo-play-button {
+    display: none;
+  }
+}
+
+.video-button-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  max-width: 10em;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.video-button-inner {
+  padding-top: 100%;
+  cursor: pointer;
+}
+
+.video-button-icon-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: translateX(-10%);
+}
+
+.video-button-icon-play {
+  background-color: $highlight;
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scaleY(0.6) rotate(45deg);
+}
+
+
+.video-button-icon-pause {
+  display: none;
+  width: 40%;
+  height: 40%;
+  position: relative;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+
+  @media screen and (min-width: $laptop-13inch) {
+    display: block;    
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 2rem;
+    background-color: $highlight;
+    width: 30%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 4rem;
+    background-color: $highlight;
+    width: 30%;
+  }  
+}
+
+.video-button-fullscreen {
+  position: absolute;
+  height: 1rem;
+  width: 2rem;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0;
+  cursor: pointer;
+  background-position: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+
+  &.is-window {
+    background-image: url('/static/components/video/fullscreen.svg');
+  }
+
+  &.is-fullscreen {
+    background-image: url('/static/components/video/fullscreen-reduce.svg');
+  }
+}
+
+.video__poster {
+  &:hover {
+    .video-button-fullscreen,
+    .video-button-icon-pause {
+      opacity: 1;
+    }
+  }
+}
+
+.video {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: {
+      property: background-color;
+      duration: 0.2s;
+    }
+  }
+
+  &.video--poster {
+    .vimeo-image {
+      display: none !important;
+    }
+  }
+
+  .video__inner > .video__inn__cont {
+    &.video-playing {
+      pointer-events: none;
+    }
+    
+    > div {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  // Prevents odd yellow appearing when the player goes fullscreen
+  ::selection {
+    background: transparent;
+  }
+}
+
+.video__poster-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-position: 50%;
+  background-size: cover;
+
+  @media (min-width: 62em) {
+    .image {
+      margin: -1em;
+    }
+  }
+}

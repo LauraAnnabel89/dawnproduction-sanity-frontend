@@ -1,0 +1,241 @@
+@font-face {
+  font-family: 'Objektiv';
+  src: url('/static/ObjektivVF_W_Wght.woff2') format('woff2');
+}
+
+blockquote {
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 1.3rem;
+
+  &:before {
+    content: '“';
+  }
+
+  &:after {
+    content: '”';
+  }
+
+  b, strong {
+    background-color: $highlight;
+    font-weight: inherit;
+    padding: 0.2em 0;
+  }
+
+  & + p {
+    font-style: italic;
+    font-size: .8rem;
+    color: lighten(#000, 55%);
+  }
+}
+
+::selection {
+  background-color: rgba($highlight, 1);
+}
+
+a {
+  display: inline;
+  position: relative;
+  text-decoration: none;
+  font-size: $blurb;
+  color: $blue;
+  transition: transform 0.35s ease-in-out, color 0 ease-in-out;
+  z-index: 1;
+  text-shadow: 0 0 0 10px #fff;
+
+  h1, h2, h3, h4, h5, h6 {
+    display: inline-block;
+    position: relative;
+  }
+
+  &:hover {
+    color: $highlight !important;
+
+    ::selection {
+      background-color: rgba($blue, 1);
+    }
+  }
+}
+
+p,
+table,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  a[href^="mailto:"],
+  a[href^="tel:"] {
+    color: inherit;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &::after {
+      display: block;
+    }
+  }
+
+  small {
+    font-size: 0.7em;
+    line-height: inherit;
+  }
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+  font-weight: 500;
+
+  @media (min-width: $laptop-13inch) {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  @media (min-width: $laptop-15inch) {
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  i, em {
+    font-style: italic;
+  }
+
+  .text-highlight {
+    background-color: $highlight;
+    padding: 0.25em 0;
+    font-style: inherit;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  line-height: 1.23em;
+  margin: 1rem 0;
+
+  i, em {
+    font-style: italic;
+  }
+
+  .text-highlight {
+    background-color: $highlight;
+    font-style: inherit;
+    line-height: 1.43em;
+  }
+}
+
+@for $h from 1 through 3 {
+  $reducer: 0.35rem * $h;
+  $size: 3rem - $reducer;
+
+  h#{$h} {
+    font-size: $size * 0.8;
+    line-height: 1.1 + ($h * 0.05);
+
+    @media (min-width: $tablet) {
+      font-size: $size * 0.6;
+      line-height: 1.1 + ($h * 0.06);
+    }
+
+    @media (min-width: $laptop-13inch) {
+      font-size: $size * 0.9;
+      line-height: 1.1 + ($h * 0.07);
+    }
+  
+    @media (min-width: $laptop-15inch) {
+      font-size: $size;
+      line-height: 1.1 + ($h * 0.1);
+    }    
+  }
+
+  @if ($h = 3) {
+    p.paragraph--bigger {
+      font-size: $size * 0.85;
+      line-height: 1.1 + ($h * 0.05);
+
+      @media (min-width: $tablet) {
+        font-size: $size * 0.6;
+        line-height: 1.1 + ($h * 0.06);
+      }
+  
+      @media (min-width: $laptop-13inch) {
+        font-size: $size * 0.9;
+        line-height: 1.1 + ($h * 0.07);
+      }
+    
+      @media (min-width: $laptop-15inch) {
+        font-size: $size;
+        line-height: 1.1 + ($h * 0.1);
+      }
+    }
+  }
+}
+
+.paragraph--clients,
+.work--client-link {
+  font-size: 7vw;
+  line-height: 1.2;
+  font-weight: 700;
+  display: block;
+  margin: 0;
+
+
+  @media (min-width: $laptop-13inch) {
+    line-height: 1.18 !important;
+  }
+
+  @media (min-width: $laptop-15inch) {
+    line-height: 1.16 !important;
+  }
+}
+
+ul,
+ol {
+  padding-left: 0;
+
+  li {
+    margin-left: 1rem;
+  }
+}
+
+.table__responsive {
+  overflow-x: auto;
+  width: 100%;
+
+  table {
+    width: 100%;
+  }
+}
+
+.size-fluid {
+  font-size: 11.5vmin;
+  line-height: 1.15;
+
+  @media (min-width: 992px) {
+    font-size: 7.9vw !important;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 1630px) {
+    font-size: 8.5vw !important;
+    line-height: 1.2;
+  }
+}
+
+.text-blue {
+  color: $blue !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}

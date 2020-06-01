@@ -1,0 +1,11 @@
+.page__home {
+  .section-row:nth-child(2) {
+    padding-top: 2rem;
+  }
+}
+
+.page__not-front {
+  .only-frontpage {
+    display: none;
+  }
+}

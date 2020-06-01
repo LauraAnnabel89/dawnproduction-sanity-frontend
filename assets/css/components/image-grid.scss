@@ -1,0 +1,229 @@
+// Has to match the parallax overflow on the JS side
+$image-overflow-margin: 1px;
+
+%grid-hovered {
+  .image,
+  .video {
+    opacity: 0;
+  }
+
+  .image-grid__image-overlay {
+    &.overlap-none {
+      opacity: 1;
+      
+      h2,
+      small {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    &.overlap-left,
+    &.overlap-center,
+    &.overlap-right {
+      opacity: 1;
+      background-color: $highlight;
+
+      h2,
+      small {
+        color: $blue;
+        opacity: 1;
+      }         
+    }
+  }
+} 
+
+.image-grid {
+  overflow: hidden;
+  margin: $gutter-width/2 0;
+  display: inline-block;
+
+  .image,
+  .video {
+    transition: {
+      property: opacity;
+      duration: 0.35s;
+    }
+
+    @media screen and (min-width: 64em) {
+      &.nudge-left {
+        margin-left: calc(50% - $image-overflow-margin);
+      }
+  
+      &.nudge-right {
+        margin-right: calc(50% - $image-overflow-margin);
+      }        
+    }
+  }
+
+  a {
+    display: block;
+    margin: 0;
+
+    &:hover {
+      @extend %grid-hovered;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &.hovered {
+    @extend %grid-hovered;
+  }
+}
+
+.image-grid__inner {
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media (min-width: 62em) {
+    margin: -$image-overflow-margin;
+  }
+}
+
+.image-grid__image-type-spacer {
+  display: block;
+
+  @media (max-width: 500px) {
+    display: none !important;
+  }
+}
+
+.image-grid__image {
+  box-sizing: border-box;
+  padding: 0.75em 0.5em;
+  flex: 1;
+
+  @media (max-width: $mobile-flex-max) {
+    padding: 0.5em 1em;
+    flex-basis: 100% !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    @include disable-parallax;
+  }
+
+  @media (min-width: 900px) {
+    padding: 1.5em 1em;
+  }
+}
+
+.image-grid__image-overlay {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  bottom: -4px;
+  right: -4px;
+  box-sizing: border-box;
+  padding: 1em;
+  background-color: transparent;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: {
+    property: background-color;
+    duration: 0.35s;
+  }
+
+
+  @media (min-width: 62em) {
+    padding: 1.5em;
+  }
+
+  @media (min-width: 88em) {
+    padding: 2em;
+  }
+
+  h2,
+  small {
+    opacity: 1;
+    transition: {
+      property: all;
+      duration: 0.35s;
+    }
+  }
+
+  &.overlap-none {
+    background-color: $highlight;
+    text-align: center;  
+    opacity: 0;
+    transition: {
+      property: opacity;
+      duration: 0.35s;
+    }
+
+    h2,
+    small {
+      opacity: 0;
+      color: $blue;
+      transition: {
+        property: all;
+        duration: 0.35s;
+      }
+    }
+
+    h2 {
+      transform: translateY(-10px);
+    }
+  
+    small {
+      transform: translateY(10px);
+    }
+  }
+
+  .icon {
+    flex: 1;
+    transform: translateY(-5px);
+    max-width: 4em;
+    min-width: 2em;
+  }
+
+  h2 {
+    font-weight: 700;
+    margin: 0;
+    font-size: 2rem;    
+  }
+
+  small {
+    font-size: 1.1rem;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+
+  @media screen and (min-width: 64em) {
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    small {
+      font-size: 1.55rem;
+      line-height: 1.55;
+    }
+  }
+
+  @media screen and (min-width: 88em) {
+    h2 {
+      font-size: 3.25rem;    
+    }
+
+    small {
+      font-size: 1.55rem;
+      line-height: 1.55;
+    }
+  }
+
+  h2,
+  small {
+    position: relative;
+    padding: 0 .5rem;
+
+    span {
+      position: relative;
+      z-index: 2;  
+    }
+  }
+}

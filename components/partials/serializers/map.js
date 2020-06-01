@@ -1,0 +1,54 @@
+import React from 'react'
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import styles from 'lib/mapStyle.json'
+
+const MARKER = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAACACAYAAAD03Gy6AAAACXBIWXMAAAsTAAALEwEAmpwYAAAGtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMTktMTAtMjhUMTI6NTA6MzlaIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0xMS0wMVQxMDo0MTo0OFoiIHhtcDpNZXRhZGF0YURhdGU9IjIwMTktMTEtMDFUMTA6NDE6NDhaIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOmYxNTYxNjk1LTgzMGQtNDVlOC1iMDJmLTIyNDljMTU4N2I5ZiIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjdiYTRhNjQ0LTIzMWYtZTg0ZS04MzVhLTEyZTFhMDdkYjFmZiIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOmJjZGIwOGYzLWZlMTEtNGZkMC04M2MxLTlhOGQzMjUwOTdkZCI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YmNkYjA4ZjMtZmUxMS00ZmQwLTgzYzEtOWE4ZDMyNTA5N2RkIiBzdEV2dDp3aGVuPSIyMDE5LTEwLTI4VDEyOjUwOjM5WiIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKE1hY2ludG9zaCkiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjlkNTlmYTQyLTFlYTQtNDYzMS1hZmUxLWEzNTQ5ZmE2YmNjMyIgc3RFdnQ6d2hlbj0iMjAxOS0xMC0yOFQxMjo1OTozMFoiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChNYWNpbnRvc2gpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpmMTU2MTY5NS04MzBkLTQ1ZTgtYjAyZi0yMjQ5YzE1ODdiOWYiIHN0RXZ0OndoZW49IjIwMTktMTEtMDFUMTA6NDE6NDhaIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/MEHhAAAJrElEQVR4nO2dbYweVRXH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'
+
+export class MapSerializer extends React.Component {
+
+  onMarkerClick () {}
+
+  render () {
+    const { google, node } = this.props
+    const { location, zoom, height } = node
+
+    if (location.lat === null || location.lng === null) return null
+
+    const marker = (
+    <Marker
+      id={1}
+      onClick={this.onMarkerClick}
+      title={'Aesop Agency'}
+      name={'Aesop Agency'}
+      options={{ icon: { url: MARKER, scaledSize: { width: 48, height: 64 } } }} />
+    )
+
+    const wrapperStyle = {}
+    if (height) wrapperStyle.paddingTop = height
+
+    return (
+      <div className='map--wrapper' style={wrapperStyle}>
+        <Map
+          google={google}
+          zoom={zoom || 20}
+          disableDefaultUI={false}
+          // draggable={false}
+          zoomControl={true}
+          gestureHandling='cooperative'
+          initialCenter={location}
+          styles={styles}>
+          {marker}
+          <InfoWindow marker={marker} visible={false}>
+            <div>
+              <h1>Aesop Agency</h1>
+            </div>
+          </InfoWindow>
+        </Map>
+      </div>
+    )
+  }
+}
+
+export default GoogleApiWrapper({
+  apiKey: ('AIzaSyAH-pekyCMjMmQgtu_TW8_g7YWasW030Ws')
+})(MapSerializer)
