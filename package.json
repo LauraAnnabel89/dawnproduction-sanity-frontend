@@ -57,7 +57,7 @@
     "mailgun-js": "0.22.0",
     "matter-attractors-f": "^0.1.7",
     "matter-js": "^0.14.2",
-    "mongoose": "5.0.6",
+    "mongoose": "5.7.5",
     "mongoose-find-or-create": "1.2.0",
     "next": "^7.0.2",
     "next-nprogress": "^1.4.0",
